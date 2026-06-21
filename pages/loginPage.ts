@@ -1,31 +1,32 @@
-import {Page, Locator, expect} from '@playwright/test'
+import { expect, Locator, Page } from "@playwright/test";
 
-export class loginPage {
+
+export class LoginPage {
     readonly page: Page
-    readonly username: Locator
-    readonly password: Locator
-    readonly loginbtn: Locator
+    readonly usernameInput: Locator
+    readonly passwordInput: Locator
+    readonly loginButton: Locator
+    readonly loginTitle: Locator
 
-    constructor(page:Page) {
+    constructor(page:Page){
         this.page = page
-        this.username = page.locator("#user-name")
-        this.password = page.locator("#password")
-        this.loginbtn = page.locator("#login-button")
+        this.usernameInput = page.locator('[data-test="username"]')
+        this.passwordInput = page.locator('[data-test="password"]')
+        this.loginButton = page.locator('[data-test="login-button"]')
+        this.loginTitle = page.getByText('Swag Labs')
+        
     }
-
-    async gotoLoginPage(){
+    async openApplication(){
         await this.page.goto('https://www.saucedemo.com/')
-
-    }
-    async login(user: string, pass: string){
-        await this.username.fill(user)
-        await this.password.fill(pass)
-        await this.loginbtn.click()
-
-    }
-    async verifyLogin() {
-        await this.page.waitForURL('https://www.saucedemo.com/inventory.html')
     }
 
+    async loginMethod(username:string, password:string){
+        await this.usernameInput.fill(username)
+        await this.passwordInput.fill(password)
+        await this.loginButton.click()
+    }
+    async loginVerification(){
+        await expect(this.loginTitle).toHaveText('Swag Labs')
+        await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html')
+    }
 }
-
