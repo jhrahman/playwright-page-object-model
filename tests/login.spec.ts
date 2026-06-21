@@ -8,7 +8,8 @@ test('Login Test', async({page})=>{
     const username = process.env.APP_USERNAME!
     const password = process.env.APP_PASSWORD!
     await login.loginMethod(username,password)
-    await login.loginVerification()
+    await expect(login.loginTitle).toHaveText('Swag Labs')
+    await expect(login.page).toHaveURL('https://www.saucedemo.com/inventory.html')
 
 })
 

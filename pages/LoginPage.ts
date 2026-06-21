@@ -25,8 +25,5 @@ export class LoginPage {
         await this.passwordInput.fill(password)
         await this.loginButton.click()
     }
-    async loginVerification(){
-        await expect(this.loginTitle).toHaveText('Swag Labs')
-        await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html')
-    }
+
 }

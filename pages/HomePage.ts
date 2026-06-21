@@ -22,9 +22,6 @@ export class HomePage{
         this.shoppingCart = page.locator('[data-test="shopping-cart-link"]')
 
     }
-    async baseURL(){
-        await this.page.goto('https://www.saucedemo.com/')
-    }
     
 
 }
