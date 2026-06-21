@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test'
+import test, {test as setup, expect} from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
 
 test('Authenticate User Session', async({page})=>{
